@@ -1,0 +1,31 @@
+import sqlite3
+
+conn = sqlite3.connect('Artemis.db')
+
+dominio = input("Domínio: ")
+reino = input("Reino: ")
+filo = input("Filo: ")
+classe = input("Classe: ")
+ordem = input("Ordem: ")
+familia = input("Família: ")
+genero = input("Gênero: ")
+especie = input("Espécie: ")
+subespecie = input("Subespécie: ")
+autor = input("Autor: ")
+ano = input("Ano: ")
+
+while True:
+    confirma = input("Deseja cadastrar a espécie? (S/N)").upper()
+    if confirma == "S" or confirma == "N":
+        break
+    else:
+        print("Resposta inválida. Responda apenas com 'S' ou 'N'.")
+
+if confirma == "S":
+    conn.execute("insert into Artemis(domínio, reino, filo, classe, ordem, família, gênero, espécie, subespécie, autor, ano) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", (dominio, reino, filo, classe, ordem, familia, genero, especie, subespecie, autor, ano))
+    conn.commit()
+    print("Espécie cadastrada!")
+
+conn.close
+quit()
+
