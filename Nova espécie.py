@@ -1,4 +1,3 @@
-
 #   0) Importar datetime
 
 from datetime import datetime
@@ -26,11 +25,10 @@ login = input("Digite seu login: ")
 #    4) Solicitar o gênero
 
 while True:
-    genero = input("Informe o gênero ao qual a espécie pertence: ").lower()
+    genero = input("Informe o gênero ao qual a espécie pertence: ").lower().capitalize()
     if not genero.isalpha():
         print("Atenção: utilize apenas letras.")
     else:
-        genero = genero.capitalize()
         break
 
 cursor.execute('Select count (*) from generos where genero = ?', (genero, ))
@@ -67,6 +65,11 @@ while True:
                 break
             else:
                 print('Espécie já cadastrada no banco.')
+                resposta = input('Deseja sair? S/N: ').upper()
+                if resposta == 'S':
+                    quit()
+                else:
+                    continue
 
 #    6) Inclusão do autor da espécie:
 
